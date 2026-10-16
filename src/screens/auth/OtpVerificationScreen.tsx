@@ -25,7 +25,7 @@ const RESEND_SECONDS = 30;
 export default function OtpVerificationScreen({navigation, route}: Props) {
   const strings = useStrings();
   const insets = useSafeAreaInsets();
-  const phone = route.params?.phone ?? '98765 43210'; // fallback for previewing
+  const phone = route.params?.phone ?? '+91 98765 43210'; // fallback for previewing
 
   const [code, setCode] = useState('');
   const [focused, setFocused] = useState(true);
@@ -77,7 +77,7 @@ export default function OtpVerificationScreen({navigation, route}: Props) {
         <Text style={styles.subtitle}>
           {strings.formatString(
             strings.otp.subtitle,
-            <Text style={styles.phone}>+91 {phone}</Text>,
+            <Text style={styles.phone}>{phone}</Text>,
           )}
         </Text>
 

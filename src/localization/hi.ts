@@ -1,4 +1,4 @@
-import type {en} from './en';
+import type { en } from './en';
 
 export const hi: typeof en = {
   common: {
@@ -99,11 +99,14 @@ export const hi: typeof en = {
     title: 'राइडर के रूप में लॉगिन करें',
     subtitle: 'आगे बढ़ने के लिए अपना रजिस्टर्ड मोबाइल नंबर डालें।',
     mobileNumber: 'मोबाइल नंबर',
-    invalidNumber: 'सही 10 अंकों का मोबाइल नंबर डालें',
     support: 'सहायता',
     terms: 'नियम और गोपनीयता',
     newUser: 'Fatafat पर नए हैं? ',
     register: 'राइडर बनें',
+    invalidNumber: 'सही {0} अंकों का मोबाइल नंबर डालें',
+    selectCountry: 'देश चुनें',
+    searchCountry: 'देश या कोड खोजें',
+    noCountries: 'कोई देश नहीं मिला',
   },
   otp: {
     title: 'अपना नंबर वेरिफ़ाई करें',
@@ -245,10 +248,10 @@ export const hi: typeof en = {
     title: 'उपलब्धता और पसंद',
     serviceType: 'सेवा का प्रकार',
     services: {
-      hourly: {name: 'घंटे के हिसाब से', sub: 'कम से कम 2 घंटे की बुकिंग'},
-      halfday: {name: 'आधा दिन', sub: '6 घंटे तक की ड्यूटी'},
-      fullday: {name: 'पूरा दिन', sub: '12 घंटे तक की ड्यूटी'},
-      outstation: {name: 'आउटस्टेशन', sub: 'शहर से बाहर कई दिन की ट्रिप'},
+      hourly: { name: 'घंटे के हिसाब से', sub: 'कम से कम 2 घंटे की बुकिंग' },
+      halfday: { name: 'आधा दिन', sub: '6 घंटे तक की ड्यूटी' },
+      fullday: { name: 'पूरा दिन', sub: '12 घंटे तक की ड्यूटी' },
+      outstation: { name: 'आउटस्टेशन', sub: 'शहर से बाहर कई दिन की ट्रिप' },
     },
     timings: 'पसंदीदा समय',
     zone: 'पसंदीदा इलाका',
@@ -305,11 +308,11 @@ export const hi: typeof en = {
     Earnings: 'कमाई',
     Profile: 'प्रोफ़ाइल',
     Alerts: 'अलर्ट',
-    Account: 'अकाउंट', 
+    Account: 'अकाउंट',
     comingSoon: '{0} (जल्द आ रहा है)',
   },
 
-    payoutHistory: {
+  payoutHistory: {
     title: 'भुगतान इतिहास',
     totalTransferred: 'इस महीने कुल ट्रांसफर',
     recentTransfers: 'हाल के ट्रांसफर',
@@ -349,7 +352,7 @@ export const hi: typeof en = {
     utr: 'UTR / रेफ़ नंबर',
   },
 
-    weeklyPlan: {
+  weeklyPlan: {
     title: 'साप्ताहिक प्लान',
     planName: 'मैक्स अर्निंग्स प्लान',
     subtitleBefore: 'एक तय फ़ीस दें और ',
@@ -375,7 +378,7 @@ export const hi: typeof en = {
     subscribe: 'अभी सब्सक्राइब करें',
   },
 
-  earnings: {                     
+  earnings: {
     greeting: {
       morning: 'सुप्रभात 👋',
       afternoon: 'नमस्कार 👋',
@@ -393,7 +396,7 @@ export const hi: typeof en = {
     active: 'चालू',
     subscription: 'सब्सक्रिप्शन',
     subscriptionText: '{0} तक चालू',
-    days: {mon: 'सोम', tue: 'मंगल', wed: 'बुध', thu: 'गुरु', fri: 'शुक्र', sat: 'शनि', sun: 'रवि'},
+    days: { mon: 'सोम', tue: 'मंगल', wed: 'बुध', thu: 'गुरु', fri: 'शुक्र', sat: 'शनि', sun: 'रवि' },
     dayNames: {
       mon: 'सोमवार',
       tue: 'मंगलवार',
@@ -404,7 +407,7 @@ export const hi: typeof en = {
       sun: 'रविवार',
     },
   },
-  
+
   home: {
     online: 'आप ऑनलाइन हैं',
     offline: 'आप ऑफ़लाइन हैं',

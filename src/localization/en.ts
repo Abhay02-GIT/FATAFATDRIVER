@@ -1,5 +1,5 @@
-import type {DocId} from '@/constants/documents';
-import type {DriverDocId} from '@/constants/driverDocuments';
+import type { DocId } from '@/constants/documents';
+import type { DriverDocId } from '@/constants/driverDocuments';
 import type {
   CarType,
   Colour,
@@ -9,7 +9,7 @@ import type {
   License,
   Transmission,
 } from '@/constants/options';
-import type {VehicleId} from '@/constants/vehicles';
+import type { VehicleId } from '@/constants/vehicles';
 
 type DocumentText = {
   title: string;
@@ -18,7 +18,7 @@ type DocumentText = {
   numberLabel?: string;
 };
 
-type DriverDocumentText = DocumentText & {uploadTitle: string};
+type DriverDocumentText = DocumentText & { uploadTitle: string };
 
 const documents: Record<DocId, DocumentText> = {
   licence: {
@@ -249,11 +249,14 @@ export const en = {
     title: 'Login as Rider',
     subtitle: 'Enter your registered mobile number to\ncontinue.',
     mobileNumber: 'MOBILE NUMBER',
-    invalidNumber: 'Enter a valid 10-digit mobile number',
     support: 'Support',
     terms: 'Terms & Privacy',
     newUser: 'New to Fatafat? ',
     register: 'Register as Rider',
+    invalidNumber: 'Enter a valid {0}-digit mobile number',
+    selectCountry: 'Select country',
+    searchCountry: 'Search country or code',
+    noCountries: 'No countries found',
   },
   otp: {
     title: 'Verify Your Number',
@@ -400,10 +403,10 @@ export const en = {
     title: 'Availability & Preferences',
     serviceType: 'SERVICE TYPE PREFERENCE',
     services: {
-      hourly: {name: 'Hourly', sub: 'Minimum 2 hrs booking'},
-      halfday: {name: 'Half Day', sub: 'Up to 6 hrs duty slot'},
-      fullday: {name: 'Full Day', sub: 'Up to 12 hrs duty slot'},
-      outstation: {name: 'Outstation', sub: 'Multi-day out of city trips'},
+      hourly: { name: 'Hourly', sub: 'Minimum 2 hrs booking' },
+      halfday: { name: 'Half Day', sub: 'Up to 6 hrs duty slot' },
+      fullday: { name: 'Full Day', sub: 'Up to 12 hrs duty slot' },
+      outstation: { name: 'Outstation', sub: 'Multi-day out of city trips' },
     },
     timings: 'PREFERRED TIMINGS',
     zone: 'PREFERRED OPERATING ZONE',
@@ -466,7 +469,7 @@ export const en = {
     comingSoon: '{0} (coming soon)',
   },
 
-    payoutHistory: {
+  payoutHistory: {
     title: 'Payout History',
     totalTransferred: 'TOTAL TRANSFERRED THIS MONTH',
     recentTransfers: 'Recent Transfers',
@@ -506,7 +509,7 @@ export const en = {
     utr: 'UTR / Ref Number',
   },
 
-    weeklyPlan: {
+  weeklyPlan: {
     title: 'Weekly Plan',
     planName: 'Max Earnings Plan',
     subtitleBefore: 'Pay a flat fee and keep ',
@@ -532,14 +535,14 @@ export const en = {
     subscribe: 'Subscribe Now',
   },
 
-  earnings: {                     
+  earnings: {
     greeting: {
       morning: 'Good morning 👋',
       afternoon: 'Good afternoon 👋',
       evening: 'Good evening 👋',
     },
-  
-   appTitle: 'Fatafat {0}',
+
+    appTitle: 'Fatafat {0}',
     thisWeek: 'THIS WEEK',
     vsLastWeek: '{0} vs last week',
     dailyEarnings: 'Daily Earnings',
@@ -551,7 +554,7 @@ export const en = {
     active: 'ACTIVE',
     subscription: 'Subscription',
     subscriptionText: 'Active till {0}',
-    days: {mon: 'Mon', tue: 'Tue', wed: 'Wed', thu: 'Thu', fri: 'Fri', sat: 'Sat', sun: 'Sun'},
+    days: { mon: 'Mon', tue: 'Tue', wed: 'Wed', thu: 'Thu', fri: 'Fri', sat: 'Sat', sun: 'Sun' },
     dayNames: {
       mon: 'Monday',
       tue: 'Tuesday',
@@ -607,7 +610,7 @@ export const en = {
     schedule: 'YOUR SCHEDULE',
     viewSchedule: 'View Schedule',
   },
-  
+
   documents,
   driverDocuments,
   vehicles,

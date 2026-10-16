@@ -11,6 +11,7 @@ import {
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import BrandLogo from '@/components/common/BrandLogo';
+import CountryPickerModal from '@/components/common/CountryPickerModal';
 import {
   ArrowRightIcon,
   ChevronDownIcon,
@@ -18,17 +19,17 @@ import {
 } from '@/components/common/Icons';
 import PrimaryButton from '@/components/common/PrimaryButton';
 import {colors} from '@/constants/colors';
+import {
+  DEFAULT_COUNTRY,
+  formatPhoneNumber,
+  phonePlaceholder,
+} from '@/constants/countries';
+import type {Country} from '@/constants/countries';
 import {fonts} from '@/constants/typography';
 import {useStrings} from '@/localization';
 import type {RootStackParamList} from '@/navigation/types';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'RiderLogin'>;
-
-const PHONE_LENGTH = 10;
-
-function formatPhone(digits: string) {
-  return digits.length > 5 ? `${digits.slice(0, 5)} ${digits.slice(5)}` : digits;
-}
 
 export default function RiderLoginScreen({navigation}: Props) {
   const strings = useStrings();
@@ -36,96 +37,126 @@ export default function RiderLoginScreen({navigation}: Props) {
   const [digits, setDigits] = useState('');
   const [focused, setFocused] = useState(false);
   const [error, setError] = useState(false);
+  const [country, setCountry] = useState<Country>(DEFAULT_COUNTRY);
+  const [pickerOpen, setPickerOpen] = useState(false);
 
   const onChangeText = (text: string) => {
-    setDigits(text.replace(/\D/g, '').slice(0, PHONE_LENGTH));
+    setDigits(text.replace(/\D/g, '').slice(0, country.phoneLength));
     setError(false);
   };
 
+  const onSelectCountry = (next: Country) => {
+    setCountry(next);
+    // Trim anything that no longer fits the new country's number length.
+    setDigits(d => d.slice(0, next.phoneLength));
+    setError(false);
+    setPickerOpen(false);
+  };
+
   const onContinue = () => {
-    if (digits.length !== PHONE_LENGTH) {
+    if (digits.length !== country.phoneLength) {
       setError(true);
       return;
     }
-    navigation.navigate('OtpVerification', {phone: formatPhone(digits)});
+    navigation.navigate('OtpVerification', {
+      phone: `${country.dialCode} ${formatPhoneNumber(digits, country)}`,
+    });
   };
 
   return (
-    <KeyboardAvoidingView style={styles.flex} behavior="padding">
-      <StatusBar barStyle="dark-content" />
-      <View
-        style={[
-          styles.container,
-          {
-            paddingTop: insets.top + 24,
-            paddingBottom: Math.max(insets.bottom, 16) + 16,
-          },
-        ]}>
-        <View style={styles.logo}>
-          <BrandLogo width={110} />
-        </View>
-
-        <Text style={styles.title}>{strings.login.title}</Text>
-        <Text style={styles.subtitle}>{strings.login.subtitle}</Text>
-
-        <Text style={styles.label}>{strings.login.mobileNumber}</Text>
+    <>
+      <KeyboardAvoidingView style={styles.flex} behavior="padding">
+        <StatusBar barStyle="dark-content" />
         <View
           style={[
-            styles.inputRow,
-            focused && styles.inputRowFocused,
-            error && styles.inputRowError,
+            styles.container,
+            {
+              paddingTop: insets.top + 24,
+              paddingBottom: Math.max(insets.bottom, 16) + 16,
+            },
           ]}>
-          <View style={styles.countryBox}>
-            <Text style={styles.flag}>🇮🇳</Text>
-            <Text style={styles.code}>+91</Text>
-            <ChevronDownIcon size={12} color={colors.textMuted} />
+          <View style={styles.logo}>
+            <BrandLogo width={110} />
           </View>
-          <TextInput
-            style={styles.input}
-            value={formatPhone(digits)}
-            onChangeText={onChangeText}
-            onFocus={() => setFocused(true)}
-            onBlur={() => setFocused(false)}
-            placeholder="00000 00000"
-            placeholderTextColor="#C9CCD3"
-            keyboardType="number-pad"
-            maxLength={PHONE_LENGTH + 1}
-          />
-        </View>
-        {error ? (
-          <Text style={styles.error}>{strings.login.invalidNumber}</Text>
-        ) : null}
 
-        <View style={styles.spacer} />
+          <Text style={styles.title}>{strings.login.title}</Text>
+          <Text style={styles.subtitle}>{strings.login.subtitle}</Text>
 
-        <View style={styles.linksRow}>
-          {/* TODO: open the support page */}
-          <Pressable style={styles.support}>
-            <HelpCircleIcon size={14} color={colors.textMuted} />
-            <Text style={styles.linkText}>{strings.login.support}</Text>
-          </Pressable>
-          {/* TODO: open terms & privacy page */}
-          <Pressable>
-            <Text style={[styles.linkText, styles.underline]}>
-              {strings.login.terms}
+          <Text style={styles.label}>{strings.login.mobileNumber}</Text>
+          <View
+            style={[
+              styles.inputRow,
+              focused && styles.inputRowFocused,
+              error && styles.inputRowError,
+            ]}>
+            <Pressable
+              style={styles.countryBox}
+              onPress={() => setPickerOpen(true)}
+              accessibilityRole="button"
+              accessibilityLabel={`${strings.login.selectCountry}: ${country.name} ${country.dialCode}`}>
+              <Text style={styles.flag}>{country.flag}</Text>
+              <Text style={styles.code}>{country.dialCode}</Text>
+              <ChevronDownIcon size={12} color={colors.textMuted} />
+            </Pressable>
+            <TextInput
+              style={styles.input}
+              value={formatPhoneNumber(digits, country)}
+              onChangeText={onChangeText}
+              onFocus={() => setFocused(true)}
+              onBlur={() => setFocused(false)}
+              placeholder={phonePlaceholder(country)}
+              placeholderTextColor="#C9CCD3"
+              keyboardType="number-pad"
+              maxLength={country.phoneLength + country.groups.length - 1}
+            />
+          </View>
+          {error ? (
+            <Text style={styles.error}>
+              {strings.formatString(
+                strings.login.invalidNumber,
+                country.phoneLength,
+              )}
             </Text>
-          </Pressable>
-        </View>
+          ) : null}
 
-        <PrimaryButton
-          title={strings.common.continue}
-          onPress={onContinue}
-          icon={<ArrowRightIcon size={18} color="#FFFFFF" />}
-        />
+          <View style={styles.spacer} />
 
-        <View style={styles.registerRow}>
-          <Text style={styles.registerText}>{strings.login.newUser}</Text>
-          <Pressable onPress={() => navigation.navigate('BecomeRider')}>
-            <Text style={styles.registerLink}>{strings.login.register}</Text>
-          </Pressable>
+          <View style={styles.linksRow}>
+            {/* TODO: open the support page */}
+            <Pressable style={styles.support}>
+              <HelpCircleIcon size={14} color={colors.textMuted} />
+              <Text style={styles.linkText}>{strings.login.support}</Text>
+            </Pressable>
+            {/* TODO: open terms & privacy page */}
+            <Pressable>
+              <Text style={[styles.linkText, styles.underline]}>
+                {strings.login.terms}
+              </Text>
+            </Pressable>
+          </View>
+
+          <PrimaryButton
+            title={strings.common.continue}
+            onPress={onContinue}
+            icon={<ArrowRightIcon size={18} color="#FFFFFF" />}
+          />
+
+          <View style={styles.registerRow}>
+            <Text style={styles.registerText}>{strings.login.newUser}</Text>
+            <Pressable onPress={() => navigation.navigate('BecomeRider')}>
+              <Text style={styles.registerLink}>{strings.login.register}</Text>
+            </Pressable>
+          </View>
         </View>
-      </View>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+
+      <CountryPickerModal
+        visible={pickerOpen}
+        selected={country}
+        onSelect={onSelectCountry}
+        onClose={() => setPickerOpen(false)}
+      />
+    </>
   );
 }
 
