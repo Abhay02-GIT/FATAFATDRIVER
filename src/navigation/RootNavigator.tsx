@@ -32,6 +32,8 @@ import DriverVerificationRejectedScreen from '@/screens/driver/DriverVerificatio
 import PayoutHistoryScreen from '@/screens/earnings/PayoutHistoryScreen';
 import EarningsActivityScreen from '@/screens/earnings/EarningsActivityScreen';
 import PayoutDetailScreen from '@/screens/earnings/PayoutDetailScreen';
+import WeeklyPlanScreen from '@/screens/earnings/WeeklyPlanScreen';
+
 
 import MainTabs from './MainTabs';
 import AlertsScreen from '@/screens/tabs/AlertsScreen';
@@ -79,6 +81,7 @@ export default function RootNavigator() {
                 <Stack.Screen name="PayoutHistory" component={PayoutHistoryScreen} />
                 <Stack.Screen name="EarningsActivity" component={EarningsActivityScreen} />
                 <Stack.Screen name="PayoutDetail" component={PayoutDetailScreen} />
+                <Stack.Screen name="WeeklyPlan" component={WeeklyPlanScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

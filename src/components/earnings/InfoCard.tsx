@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 import MdiIcon from '@/components/common/MdiIcon';
 import {colors} from '@/constants/colors';
 import {fonts} from '@/constants/typography';
@@ -12,6 +12,7 @@ type Props = {
   subtitle: string;
   badge?: string; // small amber "ACTIVE" tag (top right)
   highlighted?: boolean; // amber border (Incentives)
+  onPress?: () => void;
 };
 
 // Small square card used for "Incentives" and "Subscription".
@@ -23,9 +24,13 @@ export default function InfoCard({
   subtitle,
   badge,
   highlighted,
+  onPress,
 }: Props) {
   return (
-    <View style={[styles.card, highlighted && styles.cardHighlighted]}>
+    <Pressable
+      style={[styles.card, highlighted && styles.cardHighlighted]}
+      onPress={onPress}
+      disabled={!onPress}>
       <View style={styles.top}>
         <View style={[styles.icon, {backgroundColor: iconBg}]}>
           <MdiIcon path={iconPath} size={22} color={iconColor} />
@@ -38,7 +43,7 @@ export default function InfoCard({
       </View>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.subtitle}>{subtitle}</Text>
-    </View>
+    </Pressable>
   );
 }
 

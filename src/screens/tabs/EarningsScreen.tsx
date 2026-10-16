@@ -1,19 +1,19 @@
 import React from 'react';
-import {ScrollView, StatusBar, StyleSheet, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import DailyEarningsCard from '@/components/earnings/DailyEarningsCard';
-import type {DayKey} from '@/components/earnings/DailyEarningsCard';
+import type { DayKey } from '@/components/earnings/DailyEarningsCard';
 import EarningsHeader from '@/components/earnings/EarningsHeader';
 import InfoCard from '@/components/earnings/InfoCard';
 import PayoutCard from '@/components/earnings/PayoutCard';
 import WeekCard from '@/components/earnings/WeekCard';
-import {colors} from '@/constants/colors';
-import {MDI_DOCS} from '@/constants/iconPathsDocs';
-import {useStrings} from '@/localization';
-import type {RootStackParamList} from '@/navigation/types';
-import {useProfilePhoto} from '@/state/profilePhotoStore';
-import {formatRupees} from '@/utils/formatCurrency';
+import { colors } from '@/constants/colors';
+import { MDI_DOCS } from '@/constants/iconPathsDocs';
+import { useStrings } from '@/localization';
+import type { RootStackParamList } from '@/navigation/types';
+import { useProfilePhoto } from '@/state/profilePhotoStore';
+import { formatRupees } from '@/utils/formatCurrency';
 
 // path from @mdi/js (star), Apache-2.0
 const STAR =
@@ -24,9 +24,9 @@ const EARNINGS = {
   weekTotal: 12450,
   changePercent: 15, // vs last week
   daily: [1800, 2400, 2900, 1650, 2200, 2650, 1400], // Mon ... Sun
-  payout: {time: '9:00 AM', accountLast4: '4829'}, // always "tomorrow" for now
-  incentive: {active: true, tripsLeft: 3, bonus: 500},
-  subscription: {activeTill: 'sun' as DayKey},
+  payout: { time: '9:00 AM', accountLast4: '4829' }, // always "tomorrow" for now
+  incentive: { active: true, tripsLeft: 3, bonus: 500 },
+  subscription: { activeTill: 'sun' as DayKey },
 };
 
 // Date.getDay(): 0 = Sunday ... 6 = Saturday  ->  0 = Monday ... 6 = Sunday
@@ -48,8 +48,11 @@ export default function EarningsScreen() {
         style={styles.scroll}
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}>
-        <WeekCard total={EARNINGS.weekTotal} changePercent={EARNINGS.changePercent} />
-
+        <WeekCard
+          total={EARNINGS.weekTotal}
+          changePercent={EARNINGS.changePercent}
+          onPress={() => navigation.navigate('PayoutHistory')}
+        />
         <DailyEarningsCard
           values={EARNINGS.daily}
           activeIndex={todayIndex()}
@@ -59,7 +62,6 @@ export default function EarningsScreen() {
         <PayoutCard
           when={`${strings.earnings.tomorrow}, ${EARNINGS.payout.time}`}
           accountLast4={EARNINGS.payout.accountLast4}
-          onPress={() => navigation.navigate('PayoutHistory')}
         />
 
         <View style={styles.row}>
@@ -74,6 +76,7 @@ export default function EarningsScreen() {
               strings.earnings.incentiveText,
               String(EARNINGS.incentive.tripsLeft),
               formatRupees(EARNINGS.incentive.bonus),
+
             ))}
           />
           <View style={styles.gap} />
@@ -81,10 +84,12 @@ export default function EarningsScreen() {
             iconPath={MDI_DOCS.shieldCheck}
             iconColor={colors.textSecondary}
             iconBg={colors.surfaceAlt}
+            onPress={() => navigation.navigate('WeeklyPlan')}
             title={strings.earnings.subscription}
             subtitle={String(strings.formatString(
               strings.earnings.subscriptionText,
               strings.earnings.dayNames[EARNINGS.subscription.activeTill],
+
             ))}
           />
         </View>
@@ -94,13 +99,13 @@ export default function EarningsScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: colors.background},
-  scroll: {flex: 1, backgroundColor: colors.grayBg},
-  content: {paddingTop: 20, paddingBottom: 28},
+  container: { flex: 1, backgroundColor: colors.background },
+  scroll: { flex: 1, backgroundColor: colors.grayBg },
+  content: { paddingTop: 20, paddingBottom: 28 },
   row: {
     marginTop: 18,
     marginHorizontal: 20,
     flexDirection: 'row',
   },
-  gap: {width: 14},
+  gap: { width: 14 },
 });

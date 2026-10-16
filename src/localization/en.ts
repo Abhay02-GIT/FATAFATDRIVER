@@ -506,13 +506,39 @@ export const en = {
     utr: 'UTR / Ref Number',
   },
 
-  earnings: {                     
+    weeklyPlan: {
+    title: 'Weekly Plan',
+    planName: 'Max Earnings Plan',
+    subtitleBefore: 'Pay a flat fee and keep ',
+    subtitleHighlight: '{0}% of every fare',
+    subtitleAfter: '.',
+    subtitleSecond: 'Stop paying high commissions on long trips.',
+    mostPopular: 'MOST POPULAR',
+    weeklyPass: 'Weekly Pass',
+    perWeek: 'per week',
+    keepFares: 'Keep {0}% of all trip fares',
+    noSurge: 'Zero hidden surge fees',
+    priority: 'Priority dispatch on airport runs',
+    calculator: 'Savings Calculator',
+    calculatorText:
+      'See how much you save based on your weekly trip volume compared to the standard {0}% commission rate.',
+    estimatedTrips: 'Estimated Weekly Trips',
+    standard: 'Standard ({0}% fee)',
+    weeklyPassCost: 'Weekly Pass ({0} + {1}%)',
+    yourSavings: 'Your Weekly Savings',
+    terms:
+      'Subscription auto-renews weekly. Cancel anytime before the next billing cycle. Tolls and taxes remain 100% yours. ',
+    readTerms: 'Read full terms.',
+    subscribe: 'Subscribe Now',
+  },
+
+  earnings: {
     greeting: {
       morning: 'Good morning 👋',
       afternoon: 'Good afternoon 👋',
       evening: 'Good evening 👋',
     },
-  
+
    appTitle: 'Fatafat {0}',
     thisWeek: 'THIS WEEK',
     vsLastWeek: '{0} vs last week',
@@ -581,6 +607,7 @@ export const en = {
     schedule: 'YOUR SCHEDULE',
     viewSchedule: 'View Schedule',
   },
+
   documents,
   driverDocuments,
   vehicles,

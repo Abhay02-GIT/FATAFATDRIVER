@@ -59,7 +59,7 @@ export const ALERTS_TAB_ITEMS: TabItem[] = [
   {key: 'Trips', Icon: MapPinIcon},
   {key: 'Earnings', Icon: WalletIcon},
   {key: 'Alerts', Icon: BellIcon},
-  {key: 'Profile', Icon: UserIcon, labelKey: 'Account'},
+  // {key: 'Profile', Icon: UserIcon, labelKey: 'Account'},
 ];
 
 type ViewProps = {

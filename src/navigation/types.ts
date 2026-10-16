@@ -38,6 +38,7 @@ export type RootStackParamList = {
   PayoutHistory: undefined;
   EarningsActivity: undefined;
   PayoutDetail: {payoutId?: string} | undefined;
+  WeeklyPlan: undefined;
 };
 
 export type MainTabParamList = {
