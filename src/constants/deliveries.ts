@@ -170,3 +170,16 @@ export function getCarpoolTrip(id: string) {
 
 export const CANCEL_REASONS = ['noShow', 'unsafePickup', 'luggage', 'riderRequested'] as const;
 export type CancelReason = (typeof CANCEL_REASONS)[number];
+
+// ---------- Fare match ----------
+export type FareMatch = {
+  id: string;
+  originalFare: number;
+  offer: number; // the competitor price the rider asks us to match
+};
+
+export const FARE_MATCHES: FareMatch[] = [{id: 'f1', originalFare: 24.5, offer: 19.5}];
+
+export function getFareMatch(id: string) {
+  return FARE_MATCHES.find(f => f.id === id) ?? FARE_MATCHES[0];
+}

@@ -72,5 +72,6 @@ export const colors = {
   roseBorder: '#FECACA',
   steel: '#D1D5DB',
   avatarRing: '#111318',
+  greenWash: '#F0FDF4',
 };
 

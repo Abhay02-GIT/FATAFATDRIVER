@@ -225,6 +225,20 @@ export function CheckIcon({color}: {color: string}) {
   return <Outline width={20} color={color} d="M16.666 5L7.50025 14.166L3.334 9.99964" />;
 }
 
+export function CheckMediumIcon({color}: {color: string}) {
+  return <Outline width={16} color={color} d="M13.3328 4L6.0002 11.3328L2.6672 7.99971" />;
+}
+
+export function UploadIcon({color}: {color: string}) {
+  return (
+    <Outline
+      width={27}
+      color={color}
+      d="M13.5 3.375V16.875M7.875 9L13.5 3.375L19.125 9M23.625 16.875V21.375C23.625 21.9717 23.3879 22.544 22.966 22.966C22.544 23.3879 21.9717 23.625 21.375 23.625H5.625C5.02826 23.625 4.45597 23.3879 4.03401 22.966C3.61205 22.544 3.375 21.9717 3.375 21.375V16.875"
+    />
+  );
+}
+
 export function CheckSmallIcon({color}: {color: string}) {
   return (
     <Outline

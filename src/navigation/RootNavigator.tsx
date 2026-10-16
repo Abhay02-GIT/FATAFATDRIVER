@@ -42,6 +42,7 @@ import DropoffsScreen from '@/screens/delivery/DropoffsScreen';
 import CarpoolRequestScreen from '@/screens/delivery/CarpoolRequestScreen';
 import CarpoolManifestScreen from '@/screens/delivery/CarpoolManifestScreen';
 import CancelStopScreen from '@/screens/delivery/CancelStopScreen';
+import FareMatchScreen from '@/screens/delivery/FareMatchScreen';
 
 import MainTabs from './MainTabs';
 import AlertsScreen from '@/screens/tabs/AlertsScreen';
@@ -99,6 +100,7 @@ export default function RootNavigator() {
                 <Stack.Screen name="CarpoolRequest" component={CarpoolRequestScreen} />
                 <Stack.Screen name="CarpoolManifest" component={CarpoolManifestScreen} />
                 <Stack.Screen name="CancelStop" component={CancelStopScreen} />
+                <Stack.Screen name="FareMatch" component={FareMatchScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

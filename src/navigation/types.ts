@@ -48,6 +48,7 @@ export type RootStackParamList = {
   CarpoolRequest: {tripId: string};
   CarpoolManifest: {tripId: string};
   CancelStop: {tripId: string; riderId: string};
+  FareMatch: {fareMatchId: string};
 };
 
 export type MainTabParamList = {
