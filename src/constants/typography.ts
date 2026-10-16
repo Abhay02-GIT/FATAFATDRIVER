@@ -3,4 +3,5 @@ export const fonts = {
   medium: 'Inter-Medium',
   semiBold: 'Inter-SemiBold',
   bold: 'Inter-Bold',
+  extraBold: 'Inter-ExtraBold',
 };

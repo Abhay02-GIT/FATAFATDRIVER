@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import {
   Image,
-  PermissionsAndroid,
-  Platform,
   Pressable,
   StatusBar,
   StyleSheet,
@@ -24,18 +22,9 @@ import {fonts} from '@/constants/typography';
 import {useStrings} from '@/localization';
 import {markDriverDocUploaded} from '@/state/driverDocumentStore';
 import type {RootStackParamList} from '@/navigation/types';
+import {ensureCameraPermission} from '@/utils/camera';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'DriverUploadDocument'>;
-
-async function ensureCameraPermission() {
-  if (Platform.OS !== 'android') {
-    return true; // iOS asks by itself (needs NSCameraUsageDescription)
-  }
-  const result = await PermissionsAndroid.request(
-    PermissionsAndroid.PERMISSIONS.CAMERA,
-  );
-  return result === PermissionsAndroid.RESULTS.GRANTED;
-}
 
 // "12312027" -> "12/31/2027"
 function formatExpiry(digits: string) {

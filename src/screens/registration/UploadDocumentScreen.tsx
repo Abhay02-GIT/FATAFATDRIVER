@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import {
   Image,
   KeyboardAvoidingView,
-  PermissionsAndroid,
-  Platform,
   Pressable,
   ScrollView,
   StatusBar,
@@ -24,20 +22,11 @@ import {MDI_DOCS} from '@/constants/iconPathsDocs';
 import {fonts} from '@/constants/typography';
 import {useStrings} from '@/localization';
 import {markUploaded} from '@/state/documentStore';
+import {ensureCameraPermission} from '@/utils/camera';
 import {formatDate} from '@/utils/formatDate';
 import type {RootStackParamList} from '@/navigation/types';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'UploadDocument'>;
-
-async function ensureCameraPermission() {
-  if (Platform.OS !== 'android') {
-    return true; // iOS asks by itself (needs NSCameraUsageDescription)
-  }
-  const result = await PermissionsAndroid.request(
-    PermissionsAndroid.PERMISSIONS.CAMERA,
-  );
-  return result === PermissionsAndroid.RESULTS.GRANTED;
-}
 
 export default function UploadDocumentScreen({navigation, route}: Props) {
   const strings = useStrings();

@@ -50,5 +50,27 @@ export const colors = {
   amberStrong: '#F5A623',
   borderDark: '#1F2937',
   greenPill: '#DCFCE7',
+
+  // Delivery screens
+  crimson: '#E30445',
+  crimsonTint: '#FCEAE6',
+  ink: '#111827',
+  inkDeep: '#1A1A1A',
+  dropGreen: '#10A64A',
+  hint: '#9DA3AE',
+  silver: '#C6C6CB',
+  silverCool: '#C6C6CD',
+  headerFaint: '#E5E2E2',
+  fieldGray: '#F5F5F5',
+  slateBorder: '#46464B',
+  charcoal: '#353435',
+  salmon: '#FFB4AB',
+  truckAmber: '#F5A81C',
+  walletTint: '#FFF4E5',
+  blush: '#FFF5F5',
+  rose: '#FEE2E2',
+  roseBorder: '#FECACA',
+  steel: '#D1D5DB',
+  avatarRing: '#111318',
 };
 

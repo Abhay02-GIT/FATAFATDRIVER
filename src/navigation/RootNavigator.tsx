@@ -33,7 +33,15 @@ import PayoutHistoryScreen from '@/screens/earnings/PayoutHistoryScreen';
 import EarningsActivityScreen from '@/screens/earnings/EarningsActivityScreen';
 import PayoutDetailScreen from '@/screens/earnings/PayoutDetailScreen';
 import WeeklyPlanScreen from '@/screens/earnings/WeeklyPlanScreen';
-
+import DeliveryRequestScreen from '@/screens/delivery/DeliveryRequestScreen';
+import RequestExpiredScreen from '@/screens/delivery/RequestExpiredScreen';
+import PickupVerificationScreen from '@/screens/delivery/PickupVerificationScreen';
+import ParcelInTransitScreen from '@/screens/delivery/ParcelInTransitScreen';
+import DropVerificationScreen from '@/screens/delivery/DropVerificationScreen';
+import DropoffsScreen from '@/screens/delivery/DropoffsScreen';
+import CarpoolRequestScreen from '@/screens/delivery/CarpoolRequestScreen';
+import CarpoolManifestScreen from '@/screens/delivery/CarpoolManifestScreen';
+import CancelStopScreen from '@/screens/delivery/CancelStopScreen';
 
 import MainTabs from './MainTabs';
 import AlertsScreen from '@/screens/tabs/AlertsScreen';
@@ -82,6 +90,15 @@ export default function RootNavigator() {
                 <Stack.Screen name="EarningsActivity" component={EarningsActivityScreen} />
                 <Stack.Screen name="PayoutDetail" component={PayoutDetailScreen} />
                 <Stack.Screen name="WeeklyPlan" component={WeeklyPlanScreen} />
+                <Stack.Screen name="DeliveryRequest" component={DeliveryRequestScreen} />
+                <Stack.Screen name="RequestExpired" component={RequestExpiredScreen} />
+                <Stack.Screen name="PickupVerification" component={PickupVerificationScreen} />
+                <Stack.Screen name="ParcelInTransit" component={ParcelInTransitScreen} />
+                <Stack.Screen name="DropVerification" component={DropVerificationScreen} />
+                <Stack.Screen name="Dropoffs" component={DropoffsScreen} />
+                <Stack.Screen name="CarpoolRequest" component={CarpoolRequestScreen} />
+                <Stack.Screen name="CarpoolManifest" component={CarpoolManifestScreen} />
+                <Stack.Screen name="CancelStop" component={CancelStopScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

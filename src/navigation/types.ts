@@ -39,6 +39,15 @@ export type RootStackParamList = {
   EarningsActivity: undefined;
   PayoutDetail: {payoutId?: string} | undefined;
   WeeklyPlan: undefined;
+  DeliveryRequest: {deliveryId: string};
+  RequestExpired: undefined;
+  PickupVerification: {deliveryId: string};
+  ParcelInTransit: {deliveryId: string};
+  DropVerification: {deliveryId: string};
+  Dropoffs: {tripId: string};
+  CarpoolRequest: {tripId: string};
+  CarpoolManifest: {tripId: string};
+  CancelStop: {tripId: string; riderId: string};
 };
 
 export type MainTabParamList = {
